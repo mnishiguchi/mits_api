@@ -23,13 +23,13 @@ default: &default
 
 development:
   <<: *default
-  database: mits_api_development
+  database: sample_mits_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: mits_api
+  #username: sample_mits
 
   # The password associated with the postgres role (username).
   #password:
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: mits_api_test
+  database: sample_mits_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: mits_api_production
-  username: mits_api
+  database: sample_mits_production
+  username: sample_mits
   password: <%= ENV['MITS_API_DATABASE_PASSWORD'] %>

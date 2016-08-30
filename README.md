@@ -23,6 +23,13 @@ $ ln -s /path/to/mits_api
 
 Visit `http://mits_api.dev/`.
 
+## Check an API endpoint using curl
+
+```
+$ curl -H 'Accept: application/vnd.mits.v1' http://api.mits.dev/users/1
+```
+
+
 
 ## How to run the test suite
 
