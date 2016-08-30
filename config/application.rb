@@ -26,5 +26,16 @@ module MitsApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # https://github.com/blowmage/minitest-rails
+    config.generators do |g|
+      g.test_framework :minitest, spec: true, fixture: true
+      g.fixture_replacement :factory_girl, dir: 'test/factories'
+      g.stylesheets = false
+      g.javascripts = false
+      g.helper = false
+    end
+
+    config.autoload_paths += %W(\#{config.root}/lib)
   end
 end

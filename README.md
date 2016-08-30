@@ -1,24 +1,33 @@
-# README
+# MITS API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Ruby version
+- `2.3.1`
 
-Things you may want to cover:
 
-* Ruby version
+## Set up the Pow development server
 
-* System dependencies
+- [docs](http://pow.cx/)
 
-* Configuration
+Install Pow
 
-* Database creation
+```bash
+$ curl get.pow.cx | sh
+```
 
-* Database initialization
+Create a symlink to the Pow server
 
-* How to run the test suite
+```bash
+$ cd ~/.pow
+$ ln -s /path/to/mits_api
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Visit `http://mits_api.dev/`.
 
-* Deployment instructions
 
-* ...
+## How to run the test suite
+
+## Services (job queues, cache servers, search engines, etc.)
+
+## Deployment instructions
+
+## ...
