@@ -124,6 +124,7 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
+    nori (2.6.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
@@ -229,6 +230,7 @@ DEPENDENCIES
   minitest-rails
   minitest-reporters
   mocha
+  nori
   pg (~> 0.18)
   pry
   pry-byebug

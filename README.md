@@ -30,11 +30,18 @@ $ curl -H 'Accept: application/vnd.mits.v1' http://api.mits.dev/users/1
 ```
 
 
-
 ## How to run the test suite
 
-## Services (job queues, cache servers, search engines, etc.)
+```bash
+$ bundle exec guard
+```
 
-## Deployment instructions
+or
 
-## ...
+```bash
+$ rake test
+```
+
+
+## MITS Scmema
+- `./db/feeds/ash_a.xml`

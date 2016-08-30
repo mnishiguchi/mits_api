@@ -25,6 +25,7 @@ gem 'rack-cors'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'nori'
 
 group :development, :test do
   gem 'factory_girl_rails'
