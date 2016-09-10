@@ -1,12 +1,16 @@
+require 'json'
+
 class Api::V1::PropertiesController < ApplicationController
-  respond_to :json
 
   def index
-    respond_with Property.all
+    properties = File.read("db/feeds/parsed_feed_example.json")
+    render json: properties
   end
 
   def show
-    respond_with Property.find(params[:id])
+    properties = File.read("db/feeds/parsed_feed_example.json")
+    property   = JSON.parse(properties)[params[:id].to_i]
+    render json: property.to_json
   end
 
   def create

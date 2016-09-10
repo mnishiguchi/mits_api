@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # `app/controllers/api/`
   namespace :api, defaults: { format: :json },
-                  constraints: { subdomain: 'api' },
+                  # constraints: { subdomain: 'api' },
                   path: '/' do
 
     # `app/controllers/api/v1/`

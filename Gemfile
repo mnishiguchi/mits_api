@@ -9,8 +9,8 @@ gem 'puma', '~> 3.0'
 gem 'active_model_serializers'
 
 gem 'awesome_print'
-gem 'devise' # 4.2
 gem 'faker'
+gem 'hashie'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
