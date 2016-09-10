@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Property.destroy_all
+
+20.times do |i|
+  Property.create!(
+    name: "#{Faker::Name.last_name} Apartment",
+    description: [
+      Faker::Address.street_address,
+      Faker::Address.city_prefix,
+      Faker::Address.city_suffix,
+      Faker::Address.state_abbr,
+      Faker::Address.zip
+    ].join(' ')
+  )
+end

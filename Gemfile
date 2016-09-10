@@ -53,6 +53,7 @@ group :test do
   gem 'minitest-rails'
   gem 'minitest-reporters'
   gem 'mocha'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
