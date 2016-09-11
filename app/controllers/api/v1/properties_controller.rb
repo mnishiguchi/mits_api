@@ -5,19 +5,20 @@ class Api::V1::PropertiesController < ApplicationController
   # GET  /properties/normalized
   # GET  /properties/:id/normalized
   def normalized
-    ap "/properties/normalized"
-    if request.env['PATH_INFO'] == "/properties/normalized"
-      # TODO: List
-      render json: Property.all
+    if /\/properties\/normalized/ =~ request.env['PATH_INFO']
+      # GET  /properties/normalized
+      properties = Property.all
+      render json: properties.to_json
     else
-      # TODO: One item
-      render json: Property.find(params[:id])
+      # GET  /properties/:id/normalized
+      property = Property.find(params[:id])
+      render json: property.to_json
     end
   end
 
   def index
-    properties = File.read("db/feeds/parsed_feed_example.json")
-    render json: properties
+    properties_json = File.read("db/feeds/parsed_feed_example.json")
+    render json: properties_json
   end
 
   def show
@@ -50,28 +51,11 @@ class Api::V1::PropertiesController < ApplicationController
   #   property.destroy
   #   head 204
   # end
-
-  private
-
-    def property_params
-      whitelist = [
-        :address,
-        :amenities,
-        :community,
-        :description,
-        :floorplans,
-        :emails,
-        :latitude,
-        :longitude,
-        :parking,
-        :pet_policy,
-        :phones,
-        :photos,
-        :primary_name,
-        :uid,
-        :urls,
-        :utility
-      ]
-      params.require(:property).permit(whitelist)
-    end
+  #
+  # private
+  #
+  #   def property_params
+  #     whitelist = []
+  #     params.require(:property).permit(*whitelist)
+  #   end
 end

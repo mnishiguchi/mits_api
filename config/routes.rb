@@ -16,7 +16,7 @@ Rails.application.routes.draw do
                                           as: :properties_normalized
       get 'properties/:id/normalized' => 'properties#normalized',
                                           as: :property_normalized
-      resources :properties, only: [:index, :show, :create, :update, :destroy]
+      resources :properties, only: [:index, :show]
     end
   end
 end

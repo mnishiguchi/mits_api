@@ -1,58 +1,39 @@
-require 'json'
-
 =begin
 The Property class represents a piece of data about a property in
-our schema. It takes a parsed feed in JSON or Hash, format each
+our schema. It takes a parsed feed of Hash-type, formats each
 field through PropertyField objects and persist each field into
-our database
+our database. This class itself focuses on persisting data to our database,
+while PropertyField objects take care of sanitizing values for each field.
 =end
 
 class Property < ApplicationRecord
-  attr_reader :source,  # The source hash
-              :address,
-              :amenities,
-              :community,
-              :description,
-              :floorplans,
-              :emails,
-              :latitude,
-              :longitude,
-              :parking,
-              :pet_policy,
-              :phones,
-              :photos,
-              :primary_name,
-              :uid,
-              :urls,
-              :utility
 
-  def self.create_or_update_from_hash(hash)
+  validates :uid, presence: :true
 
-    # binding.pry
-
-    property = Property.find_or_create_by(uid: hash["uid"])
-    property.update_attributes(Property.property_params(hash))
-    property
+  def self.find_or_create_from_feed_hash(hash)
+    Property.new do |prop|
+      prop.set_formatted_params(hash)
+      prop.save!
+    end
   end
 
-  def self.property_params(hash)
-    {
-      amenities: PropertyField::Amenities.new(hash).value,
-      address: PropertyField::Address.new(hash).value,
-      community: PropertyField::Community.new(hash).value,
-      description: PropertyField::Description.new(hash).value,
-      emails: PropertyField::Email.new(hash).value,
-      floorplans: PropertyField::Floorplans.new(hash).value,
-      latitude: PropertyField::Latitude.new(hash).value,
-      longitude: PropertyField::Longitude.new(hash).value,
-      parking: PropertyField::Parking.new(hash).value,
-      pet_policy: PropertyField::PetPolicy.new(hash).value,
-      phones: PropertyField::Phones.new(hash).value,
-      primary_name: PropertyField::PrimaryName.new(hash).value,
-      photos: PropertyField::Photos.new(hash).value,
-      uid: PropertyField::Uid.new(hash).value,
-      urls: PropertyField::Urls.new(hash).value,
-      utility: PropertyField::Utility.new(hash).value
-    }
+  def set_formatted_params(hash)
+    self.amenities    = PropertyField::Amenities.new(hash).value
+    self.address      = PropertyField::Address.new(hash).value
+    self.community    = PropertyField::Community.new(hash).value
+    self.description  = PropertyField::Description.new(hash).value
+    self.emails       = PropertyField::Emails.new(hash).value
+    self.floorplans   = PropertyField::Floorplans.new(hash).value
+    self.latitude     = PropertyField::Latitude.new(hash).value
+    self.longitude    = PropertyField::Longitude.new(hash).value
+    self.parking      = PropertyField::Parking.new(hash).value
+    self.pet_policy   = PropertyField::PetPolicy.new(hash).value
+    self.phones       = PropertyField::Phones.new(hash).value
+    self.photos       = PropertyField::Photos.new(hash).value
+    self.primary_name = PropertyField::PrimaryName.new(hash).value
+    self.uid          = PropertyField::Uid.new(hash).value
+    self.urls         = PropertyField::Urls.new(hash).value
+    self.utility      = PropertyField::Utility.new(hash).value
+    self
   end
 end

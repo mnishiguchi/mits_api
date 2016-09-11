@@ -1,22 +1,22 @@
 class CreateProperties < ActiveRecord::Migration[5.0]
   def change
     create_table :properties do |t|
-      t.string :address
-      t.string :amenities
-      t.string :community
+      t.json :address
+      t.json :amenities
+      t.json :community
       t.text   :description
-      t.string :floorplans
-      t.string :emails, array: true
+      t.json :floorplans
+      t.string :emails, array: true, default: []
       t.string :latitude
       t.string :longitude
-      t.string :parking
-      t.string :pet_policy
-      t.string :phones
-      t.string :photos
+      t.string :parking, array: true, default: []
+      t.json :pet_policy
+      t.json :phones
+      t.json :photos
       t.string :primary_name
       t.string :uid
-      t.string :urls
-      t.string :utility
+      t.json :urls
+      t.json :utility
 
       t.timestamps
     end

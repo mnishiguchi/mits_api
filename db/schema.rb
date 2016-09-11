@@ -16,24 +16,24 @@ ActiveRecord::Schema.define(version: 20160910132717) do
   enable_extension "plpgsql"
 
   create_table "properties", force: :cascade do |t|
-    t.string   "address"
-    t.string   "amenities"
-    t.string   "community"
+    t.json     "address"
+    t.json     "amenities"
+    t.json     "community"
     t.text     "description"
-    t.string   "floorplans"
-    t.string   "emails",                    array: true
+    t.json     "floorplans"
+    t.string   "emails",       default: [],              array: true
     t.string   "latitude"
     t.string   "longitude"
-    t.string   "parking"
-    t.string   "pet_policy"
-    t.string   "phones"
-    t.string   "photos"
+    t.json     "parking"
+    t.json     "pet_policy"
+    t.json     "phones"
+    t.json     "photos"
     t.string   "primary_name"
     t.string   "uid"
-    t.string   "urls"
-    t.string   "utility"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.json     "urls"
+    t.json     "utility"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
 end
