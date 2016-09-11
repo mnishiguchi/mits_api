@@ -8,15 +8,9 @@
 
 Property.destroy_all
 
-20.times do |i|
-  Property.create!(
-    name: "#{Faker::Name.last_name} Apartment",
-    description: [
-      Faker::Address.street_address,
-      Faker::Address.city_prefix,
-      Faker::Address.city_suffix,
-      Faker::Address.state_abbr,
-      Faker::Address.zip
-    ].join(' ')
-  )
+json = File.read("db/feeds/parsed_feed_example.json")
+properties = JSON.parse(json)
+
+properties.each do |hash|
+  Property.create_or_update_from_hash(hash)
 end

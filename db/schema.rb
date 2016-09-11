@@ -10,26 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910154031) do
+ActiveRecord::Schema.define(version: 20160910132717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "feed_properties", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "feeds", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "properties", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "address"
+    t.string   "amenities"
+    t.string   "community"
+    t.text     "description"
+    t.string   "floorplans"
+    t.string   "emails",                    array: true
+    t.string   "latitude"
+    t.string   "longitude"
+    t.string   "parking"
+    t.string   "pet_policy"
+    t.string   "phones"
+    t.string   "photos"
+    t.string   "primary_name"
+    t.string   "uid"
+    t.string   "urls"
+    t.string   "utility"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
 end

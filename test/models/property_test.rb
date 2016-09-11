@@ -3,6 +3,8 @@ require "test_helper"
 require 'open-uri'
 require 'json'
 
+include PropertyField
+
 def valid_json?(json)
   begin
     JSON.parse(json)
@@ -21,25 +23,52 @@ describe Property do
     @property_hash = JSON.parse(properties).first
   end
 
-  it ".new.from_hash" do
-    property = Property.new
-    property.from_hash(@property_hash)
-    assert property.is_a? Property
+  let(:property) do
+     Property.create_or_update_from_hash(@property_hash)
   end
 
-  it ".new.from_json(json)" do
-    property = Property.new
-    property.from_hash(@property_hash)
+  it "#valid?" do
     assert property.is_a? Property
+    assert property.valid?
   end
 
   it "has correct read-only attributes" do
-    property = Property.new
-    property.from_hash(@property_hash)
-
-    %w(source community floorplans address utility).each do |attr|
-      assert property.send(:respond_to?, attr.to_sym)
-      refute property.send(:respond_to?, "#{attr}=".to_sym)
+    attrs = [
+      :address,
+      :amenities,
+      :community,
+      :description,
+      :floorplans,
+      :emails,
+      :latitude,
+      :longitude,
+      :parking,
+      :pet_policy,
+      :phones,
+      :photos,
+      :primary_name,
+      :uid,
+      :urls,
+      :utility
+    ].each do |attr|
+      assert {property.send(:respond_to?, attr)}
     end
   end
+
+  # it "primaty_name" do
+  #   assert_equal "Westside Creek", property.primary_name
+  # end
+  #
+  # it "emails" do
+  #   assert {property.emails.include?("WestsideCreek.MAAC@lead2lease.com")}
+  # end
+  #
+  # it "longitude and latitude" do
+  #   assert_equal "-92.42", property.longitude
+  #   assert_equal "34.80", property.latitude
+  # end
+  #
+  # it "uid" do
+  #   assert_equal "011086", property.uid
+  # end
 end
